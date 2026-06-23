@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Desempeño de campaña en Bogotá, medido dentro de la ciudad</title>
+<meta name="robots" content="noindex, noarchive, noimageindex" />
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Nunito+Sans:opsz,wght@6..12,400;6..12,700;6..12,800;6..12,900&display=swap" rel="stylesheet">
+<style>
+:root{ --blue:#2839BE; --orange:#FF4403; --gold:#F7A40D; --cream:#FFF7E9; --ink:#23263A; --navy:#161f6e; --muted:#6B6F7A; --line:#e6e1d8; --green:#1f9e4f; --red:#c0392b; }
+@page{ size:A4; margin:11mm 13mm; } @page :first{ margin:0; }
+*{ box-sizing:border-box; }
+body{ margin:0; font-family:"Nunito Sans",Arial,sans-serif; color:var(--ink); background:#fff; -webkit-print-color-adjust:exact; print-color-adjust:exact; font-size:11.2px; }
+.shead{ background:var(--blue); color:#fff; margin:9px 0 7px; padding:6px 12px; border-radius:5px; break-after:avoid; }
+.shead .l{ font-size:7.6px; font-weight:900; letter-spacing:.08em; text-transform:uppercase; } .shead .l .sq{ display:inline-block; width:8px; height:8px; background:var(--orange); margin-right:7px; } .shead .l b{ color:var(--gold); }
+.cover{ position:relative; width:210mm; height:297mm; background:#101830; overflow:hidden; color:#fff; }
+.cover .g{ position:absolute; inset:0; background:radial-gradient(circle at 78% 16%, #2839BE66, transparent 55%); }
+.cover .bar{ position:absolute; top:0; left:0; width:100%; height:14px; background:linear-gradient(90deg,var(--orange) 0 33%,var(--gold) 33% 66%,var(--blue) 66%); }
+.cover .inner{ position:absolute; inset:0; padding:26mm 22mm; display:flex; flex-direction:column; }
+.cover .kick{ color:var(--gold); font-weight:900; letter-spacing:.18em; font-size:12px; text-transform:uppercase; }
+.cover h1{ font-family:"Archivo Black"; font-size:40px; line-height:1.06; margin:14mm 0 0; }
+.cover .sub{ font-size:13.5px; color:#c9cfe8; max-width:64ch; margin:8mm 0 0; line-height:1.5; }
+.cover .meta{ margin-top:auto; font-size:11px; color:#aab0e6; } .cover .meta b{ color:#fff; font-family:"Archivo Black"; font-size:15px; }
+h2{ font-family:"Archivo Black"; color:var(--blue); font-size:.98rem; margin:12px 0 5px; padding-left:10px; border-left:5px solid var(--orange); break-after:avoid; }
+p{ text-align:justify; line-height:1.48; margin:0 0 6px; font-size:.84rem; color:#2c2f44; } p b{ color:var(--navy); }
+ul,ol{ margin:0 0 6px; padding-left:17px; } li{ font-size:.83rem; line-height:1.42; margin-bottom:3px; } li::marker{ color:var(--orange); }
+.chart{ width:100%; border:1px solid var(--line); border-radius:6px; margin:3px 0 2px; break-inside:avoid; } .cap{ font-size:.69rem; color:var(--muted); text-align:center; margin:0 0 6px; }
+.note{ background:var(--cream); border:1px solid #f0e2c4; border-left:5px solid var(--gold); border-radius:7px; padding:8px 11px; font-size:.79rem; line-height:1.42; margin:6px 0; } .note b{ color:#9a6a06; }
+.win{ background:#eafaf0; border:1px solid #b7e6c8; border-left:5px solid var(--green); border-radius:7px; padding:8px 11px; font-size:.79rem; line-height:1.42; margin:6px 0; } .win b{ color:#11713e; }
+.kpis{ display:grid; grid-template-columns:repeat(4,1fr); gap:8px; margin:6px 0; } .kpi{ background:#f4f6fc; border:1px solid var(--line); border-radius:8px; padding:8px; text-align:center; } .kpi .n{ font-family:"Archivo Black"; font-size:1.1rem; color:var(--navy); } .kpi .l{ font-size:.6rem; color:var(--muted); margin-top:4px; font-weight:700; line-height:1.2; }
+table{ width:100%; border-collapse:collapse; margin:3px 0; font-size:.72rem; }
+th,td{ padding:2.4px 5px; border-bottom:1px solid var(--line); text-align:left; } th{ background:var(--blue); color:#fff; font-size:.6rem; text-transform:uppercase; }
+td.r,th.r{ text-align:right; } td.g{ color:var(--green); font-weight:800; } td.rr{ color:var(--red); font-weight:800; }
+table.lst{ font-size:.66rem; } table.lst th,table.lst td{ padding:2px 4px; } table.lst tr:nth-child(even) td{ background:#f7f8fc; }
+.bdg{ display:inline-block; padding:1px 6px; border-radius:9px; font-size:.62rem; font-weight:800; white-space:nowrap; }
+.b-dest{ background:#dff0e6; color:#1f5d3a; } .b-sob{ background:#e4f3ea; color:#2c7a52; } .b-med{ background:#fbf2d6; color:#8a6a14; } .b-baj{ background:#fbe6d6; color:#a85a23; } .b-rez{ background:#f6dcd4; color:#9c3a26; }
+.src{ font-size:.67rem; color:var(--muted); line-height:1.38; }
+.eq{ background:#f4f6fc; border:1px solid #dfe3ee; border-radius:6px; padding:7px 11px; font-size:.82rem; font-family:Consolas,monospace; color:var(--navy); margin:5px 0; text-align:center; }
+.grid2{ display:grid; gap:12px; align-items:start; }
+</style>
+</head>
+<body>
+
+<section class="cover"><div class="g"></div><div class="bar"></div>
+  <div class="inner">
+    <div class="kick">Desempeño de campaña · medido dentro de Bogotá</div>
+    <h1>¿Dónde rindió<br>cada zona<br>por encima de<br>lo esperado?</h1>
+    <div class="sub">Comparé cada UPZ y localidad de Bogotá contra lo que su propio estrato y su respaldo de 2022 predecían: la vara es la ciudad misma. Incluyo el listado completo de las 90 UPZ y su desempeño, qué hice y cómo lo hice. Lo nacional queda como referencia de contexto.</div>
+    <div class="meta"><b>DANIEL SANTIAGO ROLDÁN</b><br>Informe de desempeño · @RoldnSantiago · junio 2026</div>
+  </div>
+</section>
+
+<div class="shead"><div class="l"><span class="sq"></span>DESEMPEÑO DE CAMPAÑA <b>· MEDIDO DENTRO DE BOGOTÁ</b></div></div>
+
+<h2>1. Punto de partida: descuento la estructura del voto</h2>
+<p>El desempeño en bruto puede confundir: una zona puede caer poco porque pertenece a un estrato que de por sí cae poco, más por composición que por mérito propio. Para una imagen nítida modelé el swing y le resté lo que explican los factores estructurales. Lo que queda —el residuo— es el <b>desempeño neto</b>: cuánto hizo cada zona por encima o por debajo de lo que su composición y su historia predecían.</p>
+<p>Controlé por los dos factores que ya sabía dominantes: el <b>estrato</b> —el componente que concentra ~90% de la variación territorial del voto según el PCA previo— y la <b>base de hace dos años</b> (el respaldo de Petro en la primera vuelta de 2022). La especificación es una regresión ponderada por el tamaño electoral de cada UPZ:</p>
+<div class="eq">swing<sub>i</sub> = β₀ + β₁·estrato<sub>i</sub> + β₂·base2022<sub>i</sub> + residuo<sub>i</sub> &nbsp;→&nbsp; desempeño neto = residuo</div>
+<ul>
+  <li><b>Swing:</b> Cepeda 2ª vuelta 2026 − Petro 2ª vuelta 2022, a dos candidatos, por UPZ.</li>
+  <li><b>Estrato:</b> promedio de la UPZ (manzana más cercana a cada puesto, catastro).</li>
+  <li><b>Base 2022:</b> respaldo de Petro en 1ª vuelta de 2022 (% válidos).</li>
+  <li><b>Datos:</b> 905 puestos de Bogotá casados entre rondas; 90 UPZ con ≥4 puestos; ponderación por votos.</li>
+</ul>
+
+<div class="grid2" style="grid-template-columns:1.04fr .96fr">
+  <div>
+    <p><b>Medida 1 — el nivel del voto es estructural.</b> Primero confirmé el supuesto: el estrato explica el <b>88%</b> del nivel de Cepeda en 2026 (R²=0,879). Cada estrato adicional resta <b>~14 puntos</b> (p&lt;0,001). Sumando la base de 2022, el nivel queda explicado en <b>98,6%</b>. Dónde saca votos Cepeda es casi pura estructura, igual que decía el PCA.</p>
+    <table>
+      <tr><th>Modelo del nivel (Cep 2026)</th><th class="r">R²</th></tr>
+      <tr><td>~ estrato</td><td class="r">0,879</td></tr>
+      <tr><td>~ estrato + base 2022</td><td class="r">0,986</td></tr>
+    </table>
+  </div>
+  <div><img class="chart" src="img/mod_nivel.png" alt="nivel del voto ~ estrato"></div>
+</div>
+
+<div class="grid2" style="grid-template-columns:.96fr 1.04fr">
+  <div><img class="chart" src="img/mod_swing.png" alt="swing ~ estrato"></div>
+  <div>
+    <p><b>Medida 2 — la caída fue uniforme en todos los estratos.</b> Aquí está el hallazgo clave: el swing (la caída de −6,7 puntos) queda <b>plano</b> frente al estrato y la base. R²=0,006 con estrato y 0,017 con estrato+base, ambos cercanos a cero. La desviación estándar de los residuos (1,76) iguala la del swing crudo: la estructura explica <b>0%</b> de quién cayó más.</p>
+    <table>
+      <tr><th>Modelo del swing</th><th class="r">R²</th><th class="r">Coef. estrato</th></tr>
+      <tr><td>~ estrato</td><td class="r">0,006</td><td class="r">+0,15 (ns)</td></tr>
+      <tr><td>~ estrato + base</td><td class="r">0,017</td><td class="r">aj. ≈0</td></tr>
+    </table>
+  </div>
+</div>
+<div class="note"><b>Lectura del marco.</b> El estrato fija el nivel del voto, y la caída de −6,7 se reparte pareja por toda la ciudad. El residuo de cada zona —cuánto se separa de esa expectativa— es la base del desempeño que mido en adelante, todo con la vara de Bogotá.</div>
+
+<div class="shead"><div class="l"><span class="sq"></span>DESEMPEÑO DE CAMPAÑA <b>· MEDIDO DENTRO DE BOGOTÁ</b></div></div>
+
+<h2>2. Qué hice y cómo lo hice</h2>
+<p>Quise saber qué zonas de Bogotá rindieron por encima de lo que su propia composición predecía. La vara es la <b>ciudad misma</b>: Bogotá es un universo aparte, con un electorado distinto al del resto del país, así que medí cada zona contra lo que Bogotá esperaría de ella. Seguí estos pasos:</p>
+<ol>
+  <li>Tomé los resultados por puesto de las dos vueltas de 2026 y de 2022; casé <b>905 puestos</b> entre rondas y los agregué a <b>90 UPZ</b> (≥4 puestos) y a <b>19 localidades</b>.</li>
+  <li>Usé el modelo de la sección 1 (estrato + base 2022) como <b>expectativa interna</b>: para cada UPZ calculé cuánto se desvió de lo que ese modelo predecía dentro de Bogotá.</li>
+  <li><b>Retención neta</b> = residuo del swing (puntos que retuvo por encima de lo predicho). <b>Movilización neta</b> = residuo del crecimiento de votantes (votantes por encima de lo que predice su estrato).</li>
+  <li>Combiné ambas en un <b>índice</b> (z de retención neta + z de movilización neta) y clasifiqué cada zona en cinco niveles, de <i>destacado</i> a <i>rezagado</i>.</li>
+</ol>
+<p>Usé datos oficiales de la Registraduría: preconteo de primera vuelta, detalle por mesa de segunda vuelta y archivo MMV de 2022. El nivel nacional lo conservo como referencia de contexto en la sección 3.</p>
+<div class="note"><b>Control de puestos no residenciales.</b> Excluí los puestos donde la gente vota sin vivir en el sector, porque su estrato de manzana representa al barrio y no a esos votantes. El caso grande es <b>Corferias</b> (puesto censo), que concentraba 54.142 votos —el 81% de la UPZ Quinta Paredes— y aparecía con una movilización de +24%, un artefacto del puesto censo. También quité las cuatro cárceles. Al excluir estos 5 puestos (1,3% de los votos), la relación entre movilización y estrato se afina (R² sube de 0,52 a 0,75) y Quinta Paredes pasa de primer lugar a estar por debajo del promedio, que es lo que corresponde a sus barrios residenciales.</div>
+
+<h2>3. Referencia nacional (contexto)</h2>
+<p>Para ubicar a Bogotá en el mapa del país: a dos candidatos, la izquierda pasó de <b>Petro 51,6% a Cepeda 49,5%</b> en la nación (−2,0 pts); Bogotá pasó de <b>60,3% a 53,6%</b> (−7,1 pts), 5 puntos más. En movilización, el país creció <b>+9,9%</b> de votantes y Bogotá <b>+4,0%</b>. Esto sitúa a la ciudad dentro de la corriente nacional. Para juzgar a cada zona uso la vara de Bogotá, porque comparar una UPZ con el promedio de un país que reúne electorados muy distintos mezcla la estructura de la ciudad con su desempeño.</p>
+<div class="kpis">
+  <div class="kpi"><div class="n">−2,0 / −7,1</div><div class="l">SWING PAÍS / BOGOTÁ (voto a dos)</div></div>
+  <div class="kpi"><div class="n">+9,9% / +4,0%</div><div class="l">MOVILIZACIÓN PAÍS / BOGOTÁ</div></div>
+  <div class="kpi"><div class="n">98,6%</div><div class="l">DEL NIVEL DEL VOTO LO FIJA LA ESTRUCTURA</div></div>
+  <div class="kpi"><div class="n">90 / 19</div><div class="l">UPZ Y LOCALIDADES EVALUADAS</div></div>
+</div>
+
+<h2>4. Desempeño agregado por localidad (vara de Bogotá)</h2>
+<p>Apliqué la misma vara interna a las 19 localidades. La barra es el índice; al lado van sus residuos: <b>retención neta</b> y <b>movilización neta</b> (lo que cada localidad hizo por encima o por debajo de lo que predicen su estrato y su base de 2022), con estrato y votos. El orden marca quién rindió por encima de lo esperado dentro de Bogotá:</p>
+<img class="chart" src="img/bog_localidades.png" alt="desempeño por localidad dentro de Bogotá">
+<table>
+  <tr><th>Localidad</th><th class="r">UPZ</th><th class="r">Votos 2v</th><th class="r">Estr.</th><th class="r">% Cep 2v</th><th class="r">Ret. neta</th><th class="r">Mov. neta</th><th class="r">Índice</th><th>Desempeño</th></tr>
+<tr><td><b>Santa Fe</b></td><td class="r">2</td><td class="r">34.046</td><td class="r">2.5</td><td class="r">68.0%</td><td class="r g">+3.1</td><td class="r g">+2.3</td><td class="r"><b>1.44</b></td><td><span class="bdg b-dest">Destacado</span></td></tr>
+<tr><td><b>Candelaria</b></td><td class="r">1</td><td class="r">25.234</td><td class="r">2.6</td><td class="r">64.9%</td><td class="r g">+2.3</td><td class="r g">+0.7</td><td class="r"><b>0.73</b></td><td><span class="bdg b-sob">Sobre el promedio</span></td></tr>
+<tr><td><b>Usaquén</b></td><td class="r">7</td><td class="r">268.867</td><td class="r">4.3</td><td class="r">30.7%</td><td class="r g">+1.0</td><td class="r g">+1.4</td><td class="r"><b>0.57</b></td><td><span class="bdg b-sob">Sobre el promedio</span></td></tr>
+<tr><td><b>Mártires</b></td><td class="r">2</td><td class="r">46.381</td><td class="r">3.0</td><td class="r">47.9%</td><td class="r rr">-0.4</td><td class="r g">+2.6</td><td class="r"><b>0.53</b></td><td><span class="bdg b-sob">Sobre el promedio</span></td></tr>
+<tr><td><b>Chapinero</b></td><td class="r">4</td><td class="r">92.220</td><td class="r">4.6</td><td class="r">34.2%</td><td class="r g">+1.3</td><td class="r g">+0.9</td><td class="r"><b>0.50</b></td><td><span class="bdg b-sob">Sobre el promedio</span></td></tr>
+<tr><td><b>Usme</b></td><td class="r">4</td><td class="r">136.613</td><td class="r">1.8</td><td class="r">72.1%</td><td class="r g">+1.3</td><td class="r g">+0.9</td><td class="r"><b>0.50</b></td><td><span class="bdg b-sob">Sobre el promedio</span></td></tr>
+<tr><td><b>Ciudad Bolívar</b></td><td class="r">7</td><td class="r">285.330</td><td class="r">1.7</td><td class="r">69.8%</td><td class="r g">+0.4</td><td class="r g">+1.7</td><td class="r"><b>0.48</b></td><td><span class="bdg b-sob">Sobre el promedio</span></td></tr>
+<tr><td><b>Barrios Unidos</b></td><td class="r">3</td><td class="r">97.278</td><td class="r">3.5</td><td class="r">42.0%</td><td class="r g">+0.5</td><td class="r g">+1.2</td><td class="r"><b>0.34</b></td><td><span class="bdg b-sob">Sobre el promedio</span></td></tr>
+<tr><td><b>Teusaquillo</b></td><td class="r">5</td><td class="r">89.404</td><td class="r">3.8</td><td class="r">48.4%</td><td class="r g">+3.1</td><td class="r rr">-1.6</td><td class="r"><b>0.29</b></td><td><span class="bdg b-med">En el promedio</span></td></tr>
+<tr><td><b>San Cristóbal</b></td><td class="r">5</td><td class="r">187.377</td><td class="r">2.3</td><td class="r">69.3%</td><td class="r g">+0.7</td><td class="r g">+0.6</td><td class="r"><b>0.24</b></td><td><span class="bdg b-med">En el promedio</span></td></tr>
+<tr><td><b>Bosa</b></td><td class="r">5</td><td class="r">327.952</td><td class="r">1.9</td><td class="r">67.9%</td><td class="r g">+0.8</td><td class="r g">+0.2</td><td class="r"><b>0.16</b></td><td><span class="bdg b-med">En el promedio</span></td></tr>
+<tr><td><b>Suba</b></td><td class="r">10</td><td class="r">571.899</td><td class="r">3.3</td><td class="r">44.0%</td><td class="r g">+0.4</td><td class="r g">+0.0</td><td class="r"><b>-0.02</b></td><td><span class="bdg b-med">En el promedio</span></td></tr>
+<tr><td><b>Rafael Uribe Uribe</b></td><td class="r">5</td><td class="r">175.144</td><td class="r">2.5</td><td class="r">63.4%</td><td class="r rr">-0.2</td><td class="r g">+0.3</td><td class="r"><b>-0.09</b></td><td><span class="bdg b-med">En el promedio</span></td></tr>
+<tr><td><b>Tunjuelito</b></td><td class="r">2</td><td class="r">102.702</td><td class="r">2.4</td><td class="r">59.5%</td><td class="r rr">-1.1</td><td class="r g">+0.3</td><td class="r"><b>-0.35</b></td><td><span class="bdg b-baj">Por debajo</span></td></tr>
+<tr><td><b>Engativá</b></td><td class="r">7</td><td class="r">393.055</td><td class="r">2.8</td><td class="r">50.4%</td><td class="r rr">-0.4</td><td class="r rr">-0.5</td><td class="r"><b>-0.40</b></td><td><span class="bdg b-baj">Por debajo</span></td></tr>
+<tr><td><b>Fontibon</b></td><td class="r">5</td><td class="r">188.765</td><td class="r">3.2</td><td class="r">49.5%</td><td class="r rr">-0.4</td><td class="r rr">-0.6</td><td class="r"><b>-0.44</b></td><td><span class="bdg b-baj">Por debajo</span></td></tr>
+<tr><td><b>Puente Aranda</b></td><td class="r">3</td><td class="r">97.452</td><td class="r">3.0</td><td class="r">46.8%</td><td class="r rr">-1.1</td><td class="r g">+0.0</td><td class="r"><b>-0.46</b></td><td><span class="bdg b-baj">Por debajo</span></td></tr>
+<tr><td><b>Antonio Nariño</b></td><td class="r">3</td><td class="r">98.993</td><td class="r">2.9</td><td class="r">50.5%</td><td class="r rr">-1.5</td><td class="r g">+0.2</td><td class="r"><b>-0.53</b></td><td><span class="bdg b-baj">Por debajo</span></td></tr>
+<tr><td><b>Kennedy</b></td><td class="r">10</td><td class="r">804.823</td><td class="r">2.6</td><td class="r">54.7%</td><td class="r rr">-1.4</td><td class="r rr">-1.5</td><td class="r"><b>-1.00</b></td><td><span class="bdg b-rez">Rezagado</span></td></tr>
+</table>
+<div class="win"><b>Santa Fe encabeza; el sur y el centro tradicional la acompañan.</b> <b>Santa Fe</b> lidera por retención neta; <b>Candelaria, Usaquén, Mártires, Chapinero, Usme y Ciudad Bolívar</b> rinden por encima de su estructura, con el sur aportando movilización. La mayoría de localidades se mueve cerca de lo esperado, y <b>Kennedy</b> queda como la que más rindió por debajo de lo que su estrato y su base predecían.</div>
+
+<div class="shead"><div class="l"><span class="sq"></span>DESEMPEÑO DE CAMPAÑA <b>· MEDIDO DENTRO DE BOGOTÁ</b></div></div>
+
+<h2>5. Las dos dimensiones, netas de estructura</h2>
+<img class="chart" src="img/bog_dimensiones.png" alt="retención neta vs movilización neta">
+<p class="cap">Cada UPZ. A la derecha = retuvo voto por encima de lo predicho dentro de Bogotá; arriba = movilizó por encima de lo que predice su estrato. El cuadrante verde reúne a las que rindieron por encima de su estructura en ambas dimensiones.</p>
+<div class="note"><b>Cómo leerlo con la tabla.</b> La nube da el panorama; el número fino de cada zona vive en el listado de la sección 6. Galerías, Las Nieves y Santa Fe se separan por retención; el sur (Ciudad Usme, El Tesoro, Lucero, Río Tunjuelo) por movilización; Tintal Norte y el norte de Kennedy quedan en la esquina baja.</div>
+
+<h2>6. Listado completo de las 90 UPZ (vara de Bogotá)</h2>
+<p>Cada UPZ con sus indicadores y su desempeño, ordenadas de mayor a menor índice. <b>Ret. neta</b> = puntos de swing por encima de lo que predicen su estrato y su base 2022; <b>Mov. neta</b> = puntos porcentuales de votantes por encima de lo predicho; el <b>índice</b> combina ambos en z. El archivo <i>Desempeno_UPZ_Bogota.csv</i> trae además el swing crudo y el residuo de nivel.</p>
+<img class="chart" src="img/bog_upz_strip.png" alt="las 90 UPZ por desempeño interno">
+<table class="lst">
+  <tr><th>UPZ</th><th>Localidad</th><th class="r">Estr.</th><th class="r">Votos 2v</th><th class="r">% Cep 2v</th><th class="r">Ret. neta</th><th class="r">Mov. neta</th><th class="r">Índice</th><th>Desempeño</th></tr>
+<tr><td><b>Las Nieves</b></td><td>Santa Fe</td><td class="r">2.8</td><td class="r">20.213</td><td class="r">62.8%</td><td class="r g">+4.4</td><td class="r g">+1.9</td><td class="r"><b>1.69</b></td><td><span class="bdg b-dest">Destacado</span></td></tr>
+<tr><td><b>Galerias</b></td><td>Teusaquillo</td><td class="r">3.3</td><td class="r">28.852</td><td class="r">51.2%</td><td class="r g">+6.6</td><td class="r rr">-0.3</td><td class="r"><b>1.65</b></td><td><span class="bdg b-dest">Destacado</span></td></tr>
+<tr><td><b>Ciudad Usme</b></td><td>Usme</td><td class="r">1.7</td><td class="r">11.582</td><td class="r">75.6%</td><td class="r g">+1.6</td><td class="r g">+4.3</td><td class="r"><b>1.58</b></td><td><span class="bdg b-dest">Destacado</span></td></tr>
+<tr><td><b>El Refugio</b></td><td>Chapinero</td><td class="r">6.0</td><td class="r">19.013</td><td class="r">13.1%</td><td class="r g">+2.4</td><td class="r g">+3.3</td><td class="r"><b>1.54</b></td><td><span class="bdg b-dest">Destacado</span></td></tr>
+<tr><td><b>El Tesoro</b></td><td>Ciudad Bolívar</td><td class="r">1.3</td><td class="r">26.038</td><td class="r">74.2%</td><td class="r g">+1.5</td><td class="r g">+3.1</td><td class="r"><b>1.23</b></td><td><span class="bdg b-dest">Destacado</span></td></tr>
+<tr><td><b>Santa Barbara</b></td><td>Usaquén</td><td class="r">5.8</td><td class="r">35.717</td><td class="r">12.9%</td><td class="r g">+1.8</td><td class="r g">+2.7</td><td class="r"><b>1.19</b></td><td><span class="bdg b-dest">Destacado</span></td></tr>
+<tr><td><b>Upr Rio Tunjuelo</b></td><td>Ciudad Bolívar</td><td class="r">1.4</td><td class="r">5.714</td><td class="r">73.3%</td><td class="r rr">-1.7</td><td class="r g">+6.1</td><td class="r"><b>1.17</b></td><td><span class="bdg b-dest">Destacado</span></td></tr>
+<tr><td><b>Chico Lago</b></td><td>Chapinero</td><td class="r">4.8</td><td class="r">34.224</td><td class="r">26.9%</td><td class="r g">+2.0</td><td class="r g">+2.3</td><td class="r"><b>1.14</b></td><td><span class="bdg b-dest">Destacado</span></td></tr>
+<tr><td><b>Usaquen</b></td><td>Usaquén</td><td class="r">4.9</td><td class="r">40.520</td><td class="r">23.6%</td><td class="r g">+1.3</td><td class="r g">+2.8</td><td class="r"><b>1.07</b></td><td><span class="bdg b-dest">Destacado</span></td></tr>
+<tr><td><b>Lourdes</b></td><td>Santa Fe</td><td class="r">2.0</td><td class="r">13.833</td><td class="r">75.6%</td><td class="r g">+1.3</td><td class="r g">+2.8</td><td class="r"><b>1.06</b></td><td><span class="bdg b-dest">Destacado</span></td></tr>
+<tr><td><b>Alfonso Lopez</b></td><td>Usme</td><td class="r">1.0</td><td class="r">14.570</td><td class="r">74.4%</td><td class="r g">+2.4</td><td class="r g">+1.6</td><td class="r"><b>1.02</b></td><td><span class="bdg b-dest">Destacado</span></td></tr>
+<tr><td><b>Lucero</b></td><td>Ciudad Bolívar</td><td class="r">1.3</td><td class="r">58.857</td><td class="r">72.5%</td><td class="r g">+0.2</td><td class="r g">+3.5</td><td class="r"><b>0.97</b></td><td><span class="bdg b-dest">Destacado</span></td></tr>
+<tr><td><b>Los Alcazares</b></td><td>Barrios Unidos</td><td class="r">3.3</td><td class="r">28.785</td><td class="r">44.1%</td><td class="r g">+1.3</td><td class="r g">+2.3</td><td class="r"><b>0.92</b></td><td><span class="bdg b-dest">Destacado</span></td></tr>
+<tr><td><b>Country Club</b></td><td>Usaquén</td><td class="r">5.5</td><td class="r">34.249</td><td class="r">19.3%</td><td class="r g">+1.9</td><td class="r g">+1.7</td><td class="r"><b>0.92</b></td><td><span class="bdg b-dest">Destacado</span></td></tr>
+<tr><td><b>Jerusalem</b></td><td>Ciudad Bolívar</td><td class="r">1.0</td><td class="r">27.343</td><td class="r">71.6%</td><td class="r g">+1.4</td><td class="r g">+1.8</td><td class="r"><b>0.81</b></td><td><span class="bdg b-dest">Destacado</span></td></tr>
+<tr><td><b>La Sabana</b></td><td>Mártires</td><td class="r">3.0</td><td class="r">29.839</td><td class="r">49.2%</td><td class="r rr">-0.3</td><td class="r g">+3.3</td><td class="r"><b>0.76</b></td><td><span class="bdg b-sob">Sobre el promedio</span></td></tr>
+<tr><td><b>La Candelaria</b></td><td>Candelaria</td><td class="r">2.6</td><td class="r">25.234</td><td class="r">64.9%</td><td class="r g">+2.3</td><td class="r g">+0.7</td><td class="r"><b>0.73</b></td><td><span class="bdg b-sob">Sobre el promedio</span></td></tr>
+<tr><td><b>Verbenal</b></td><td>Usaquén</td><td class="r">2.9</td><td class="r">46.213</td><td class="r">51.9%</td><td class="r g">+1.6</td><td class="r g">+1.0</td><td class="r"><b>0.63</b></td><td><span class="bdg b-sob">Sobre el promedio</span></td></tr>
+<tr><td><b>La Alhambra</b></td><td>Suba</td><td class="r">5.0</td><td class="r">27.489</td><td class="r">20.9%</td><td class="r g">+1.3</td><td class="r g">+1.2</td><td class="r"><b>0.59</b></td><td><span class="bdg b-sob">Sobre el promedio</span></td></tr>
+<tr><td><b>Tibabuyes</b></td><td>Suba</td><td class="r">2.2</td><td class="r">113.816</td><td class="r">61.0%</td><td class="r g">+2.1</td><td class="r g">+0.3</td><td class="r"><b>0.56</b></td><td><span class="bdg b-sob">Sobre el promedio</span></td></tr>
+<tr><td><b>Engativa</b></td><td>Engativá</td><td class="r">2.0</td><td class="r">46.073</td><td class="r">58.1%</td><td class="r g">+0.6</td><td class="r g">+1.6</td><td class="r"><b>0.53</b></td><td><span class="bdg b-sob">Sobre el promedio</span></td></tr>
+<tr><td><b>Fontibon San Pablo</b></td><td>Fontibon</td><td class="r">2.5</td><td class="r">13.643</td><td class="r">63.8%</td><td class="r g">+2.4</td><td class="r rr">-0.1</td><td class="r"><b>0.51</b></td><td><span class="bdg b-sob">Sobre el promedio</span></td></tr>
+<tr><td><b>Los Libertadores</b></td><td>San Cristóbal</td><td class="r">1.7</td><td class="r">29.283</td><td class="r">73.6%</td><td class="r g">+1.3</td><td class="r g">+0.9</td><td class="r"><b>0.51</b></td><td><span class="bdg b-sob">Sobre el promedio</span></td></tr>
+<tr><td><b>Diana Turbay</b></td><td>Rafael Uribe Uribe</td><td class="r">1.9</td><td class="r">26.705</td><td class="r">70.6%</td><td class="r g">+1.3</td><td class="r g">+0.8</td><td class="r"><b>0.48</b></td><td><span class="bdg b-sob">Sobre el promedio</span></td></tr>
+<tr><td><b>Ismael Perdomo</b></td><td>Ciudad Bolívar</td><td class="r">1.8</td><td class="r">73.076</td><td class="r">68.9%</td><td class="r g">+1.1</td><td class="r g">+0.8</td><td class="r"><b>0.42</b></td><td><span class="bdg b-sob">Sobre el promedio</span></td></tr>
+<tr><td><b>El Rincon</b></td><td>Suba</td><td class="r">2.3</td><td class="r">115.003</td><td class="r">58.3%</td><td class="r g">+1.5</td><td class="r g">+0.2</td><td class="r"><b>0.37</b></td><td><span class="bdg b-sob">Sobre el promedio</span></td></tr>
+<tr><td><b>Comuneros</b></td><td>Usme</td><td class="r">1.6</td><td class="r">43.824</td><td class="r">72.3%</td><td class="r g">+1.2</td><td class="r g">+0.5</td><td class="r"><b>0.35</b></td><td><span class="bdg b-sob">Sobre el promedio</span></td></tr>
+<tr><td><b>La Gloria</b></td><td>San Cristóbal</td><td class="r">2.0</td><td class="r">47.112</td><td class="r">73.1%</td><td class="r g">+1.2</td><td class="r g">+0.5</td><td class="r"><b>0.35</b></td><td><span class="bdg b-sob">Sobre el promedio</span></td></tr>
+<tr><td><b>Bosa Central</b></td><td>Bosa</td><td class="r">2.0</td><td class="r">155.595</td><td class="r">68.8%</td><td class="r g">+0.8</td><td class="r g">+0.9</td><td class="r"><b>0.35</b></td><td><span class="bdg b-sob">Sobre el promedio</span></td></tr>
+<tr><td><b>Los Andes</b></td><td>Barrios Unidos</td><td class="r">4.0</td><td class="r">28.691</td><td class="r">36.0%</td><td class="r g">+0.6</td><td class="r g">+1.0</td><td class="r"><b>0.34</b></td><td><span class="bdg b-sob">Sobre el promedio</span></td></tr>
+<tr><td><b>San Cristobal Norte</b></td><td>Usaquén</td><td class="r">3.0</td><td class="r">16.863</td><td class="r">49.9%</td><td class="r g">+1.4</td><td class="r g">+0.2</td><td class="r"><b>0.34</b></td><td><span class="bdg b-sob">Sobre el promedio</span></td></tr>
+<tr><td><b>Gran Yomasa</b></td><td>Usme</td><td class="r">2.0</td><td class="r">66.637</td><td class="r">70.8%</td><td class="r g">+1.0</td><td class="r g">+0.5</td><td class="r"><b>0.29</b></td><td><span class="bdg b-med">En el promedio</span></td></tr>
+<tr><td><b>La Uribe</b></td><td>Usaquén</td><td class="r">3.7</td><td class="r">29.687</td><td class="r">40.2%</td><td class="r g">+0.1</td><td class="r g">+1.2</td><td class="r"><b>0.24</b></td><td><span class="bdg b-med">En el promedio</span></td></tr>
+<tr><td><b>Tunjuelito</b></td><td>Tunjuelito</td><td class="r">2.2</td><td class="r">32.730</td><td class="r">60.6%</td><td class="r rr">-0.6</td><td class="r g">+1.8</td><td class="r"><b>0.22</b></td><td><span class="bdg b-med">En el promedio</span></td></tr>
+<tr><td><b>Fontibon</b></td><td>Fontibon</td><td class="r">3.0</td><td class="r">88.062</td><td class="r">54.0%</td><td class="r g">+0.8</td><td class="r g">+0.4</td><td class="r"><b>0.19</b></td><td><span class="bdg b-med">En el promedio</span></td></tr>
+<tr><td><b>Sosiego</b></td><td>San Cristóbal</td><td class="r">2.7</td><td class="r">37.355</td><td class="r">64.5%</td><td class="r rr">-0.4</td><td class="r g">+1.5</td><td class="r"><b>0.19</b></td><td><span class="bdg b-med">En el promedio</span></td></tr>
+<tr><td><b>Tintal Sur</b></td><td>Bosa</td><td class="r">1.8</td><td class="r">33.365</td><td class="r">71.5%</td><td class="r g">+2.5</td><td class="r rr">-1.3</td><td class="r"><b>0.17</b></td><td><span class="bdg b-med">En el promedio</span></td></tr>
+<tr><td><b>De Julio</b></td><td>San Cristóbal</td><td class="r">2.6</td><td class="r">49.963</td><td class="r">65.9%</td><td class="r g">+0.5</td><td class="r g">+0.5</td><td class="r"><b>0.14</b></td><td><span class="bdg b-med">En el promedio</span></td></tr>
+<tr><td><b>Puente Aranda</b></td><td>Puente Aranda</td><td class="r">3.0</td><td class="r">7.427</td><td class="r">50.2%</td><td class="r rr">-0.8</td><td class="r g">+1.7</td><td class="r"><b>0.14</b></td><td><span class="bdg b-med">En el promedio</span></td></tr>
+<tr><td><b>Marco Fidel Suarez</b></td><td>Rafael Uribe Uribe</td><td class="r">2.5</td><td class="r">32.967</td><td class="r">67.4%</td><td class="r rr">-0.0</td><td class="r g">+0.9</td><td class="r"><b>0.14</b></td><td><span class="bdg b-med">En el promedio</span></td></tr>
+<tr><td><b>Santa Isabel</b></td><td>Mártires</td><td class="r">3.0</td><td class="r">16.542</td><td class="r">45.4%</td><td class="r rr">-0.4</td><td class="r g">+1.2</td><td class="r"><b>0.12</b></td><td><span class="bdg b-med">En el promedio</span></td></tr>
+<tr><td><b>Chapinero</b></td><td>Chapinero</td><td class="r">3.7</td><td class="r">26.282</td><td class="r">51.4%</td><td class="r g">+1.9</td><td class="r rr">-1.0</td><td class="r"><b>0.11</b></td><td><span class="bdg b-med">En el promedio</span></td></tr>
+<tr><td><b>Bosa Occidental</b></td><td>Bosa</td><td class="r">1.9</td><td class="r">72.007</td><td class="r">65.8%</td><td class="r g">+0.7</td><td class="r rr">-0.1</td><td class="r"><b>0.04</b></td><td><span class="bdg b-med">En el promedio</span></td></tr>
+<tr><td><b>San Blas</b></td><td>San Cristóbal</td><td class="r">1.9</td><td class="r">23.664</td><td class="r">71.6%</td><td class="r g">+1.1</td><td class="r rr">-0.6</td><td class="r"><b>0.01</b></td><td><span class="bdg b-med">En el promedio</span></td></tr>
+<tr><td><b>San Francisco</b></td><td>Ciudad Bolívar</td><td class="r">2.0</td><td class="r">49.878</td><td class="r">68.4%</td><td class="r rr">-0.3</td><td class="r g">+0.7</td><td class="r"><b>-0.01</b></td><td><span class="bdg b-med">En el promedio</span></td></tr>
+<tr><td><b>Americas</b></td><td>Kennedy</td><td class="r">2.7</td><td class="r">75.032</td><td class="r">49.2%</td><td class="r g">+1.7</td><td class="r rr">-1.3</td><td class="r"><b>-0.02</b></td><td><span class="bdg b-med">En el promedio</span></td></tr>
+<tr><td><b>El Porvenir</b></td><td>Bosa</td><td class="r">1.6</td><td class="r">43.845</td><td class="r">69.3%</td><td class="r g">+1.0</td><td class="r rr">-0.6</td><td class="r"><b>-0.02</b></td><td><span class="bdg b-med">En el promedio</span></td></tr>
+<tr><td><b>La Esmeralda</b></td><td>Teusaquillo</td><td class="r">4.3</td><td class="r">16.979</td><td class="r">35.6%</td><td class="r g">+1.3</td><td class="r rr">-0.9</td><td class="r"><b>-0.03</b></td><td><span class="bdg b-med">En el promedio</span></td></tr>
+<tr><td><b>Doce De Octubre</b></td><td>Barrios Unidos</td><td class="r">3.3</td><td class="r">39.802</td><td class="r">44.7%</td><td class="r rr">-0.3</td><td class="r g">+0.5</td><td class="r"><b>-0.07</b></td><td><span class="bdg b-med">En el promedio</span></td></tr>
+<tr><td><b>Quiroga</b></td><td>Rafael Uribe Uribe</td><td class="r">3.0</td><td class="r">58.201</td><td class="r">58.7%</td><td class="r rr">-0.6</td><td class="r g">+0.8</td><td class="r"><b>-0.10</b></td><td><span class="bdg b-med">En el promedio</span></td></tr>
+<tr><td><b>Los Cedros</b></td><td>Usaquén</td><td class="r">4.3</td><td class="r">65.618</td><td class="r">26.5%</td><td class="r rr">-0.2</td><td class="r g">+0.3</td><td class="r"><b>-0.10</b></td><td><span class="bdg b-med">En el promedio</span></td></tr>
+<tr><td><b>Minuto De Dios</b></td><td>Engativá</td><td class="r">2.8</td><td class="r">61.483</td><td class="r">51.5%</td><td class="r g">+0.6</td><td class="r rr">-0.6</td><td class="r"><b>-0.15</b></td><td><span class="bdg b-med">En el promedio</span></td></tr>
+<tr><td><b>San Rafael</b></td><td>Puente Aranda</td><td class="r">3.0</td><td class="r">36.242</td><td class="r">47.0%</td><td class="r rr">-0.4</td><td class="r g">+0.4</td><td class="r"><b>-0.16</b></td><td><span class="bdg b-med">En el promedio</span></td></tr>
+<tr><td><b>Calandaima</b></td><td>Kennedy</td><td class="r">2.4</td><td class="r">36.266</td><td class="r">60.9%</td><td class="r g">+0.8</td><td class="r rr">-0.9</td><td class="r"><b>-0.19</b></td><td><span class="bdg b-med">En el promedio</span></td></tr>
+<tr><td><b>Las Ferias</b></td><td>Engativá</td><td class="r">3.0</td><td class="r">55.044</td><td class="r">49.4%</td><td class="r g">+0.5</td><td class="r rr">-0.7</td><td class="r"><b>-0.20</b></td><td><span class="bdg b-med">En el promedio</span></td></tr>
+<tr><td><b>Arborizadora</b></td><td>Ciudad Bolívar</td><td class="r">2.6</td><td class="r">44.424</td><td class="r">65.2%</td><td class="r rr">-0.4</td><td class="r g">+0.1</td><td class="r"><b>-0.23</b></td><td><span class="bdg b-med">En el promedio</span></td></tr>
+<tr><td><b>Niza</b></td><td>Suba</td><td class="r">4.6</td><td class="r">62.742</td><td class="r">29.6%</td><td class="r rr">-0.7</td><td class="r g">+0.2</td><td class="r"><b>-0.27</b></td><td><span class="bdg b-med">En el promedio</span></td></tr>
+<tr><td><b>La Floresta</b></td><td>Suba</td><td class="r">3.7</td><td class="r">22.672</td><td class="r">28.0%</td><td class="r rr">-0.5</td><td class="r rr">-0.0</td><td class="r"><b>-0.28</b></td><td><span class="bdg b-med">En el promedio</span></td></tr>
+<tr><td><b>Teusaquillo</b></td><td>Teusaquillo</td><td class="r">3.9</td><td class="r">18.717</td><td class="r">56.6%</td><td class="r g">+1.9</td><td class="r rr">-2.4</td><td class="r"><b>-0.30</b></td><td><span class="bdg b-baj">Por debajo</span></td></tr>
+<tr><td><b>El Prado</b></td><td>Suba</td><td class="r">3.6</td><td class="r">36.886</td><td class="r">30.3%</td><td class="r rr">-0.8</td><td class="r g">+0.2</td><td class="r"><b>-0.31</b></td><td><span class="bdg b-baj">Por debajo</span></td></tr>
+<tr><td><b>Gran Britalia</b></td><td>Kennedy</td><td class="r">2.1</td><td class="r">46.964</td><td class="r">62.3%</td><td class="r rr">-0.2</td><td class="r rr">-0.4</td><td class="r"><b>-0.32</b></td><td><span class="bdg b-baj">Por debajo</span></td></tr>
+<tr><td><b>Suba</b></td><td>Suba</td><td class="r">3.0</td><td class="r">72.057</td><td class="r">50.8%</td><td class="r rr">-0.6</td><td class="r rr">-0.0</td><td class="r"><b>-0.32</b></td><td><span class="bdg b-baj">Por debajo</span></td></tr>
+<tr><td><b>San Jose De Bavaria</b></td><td>Suba</td><td class="r">3.9</td><td class="r">36.978</td><td class="r">34.4%</td><td class="r rr">-0.0</td><td class="r rr">-0.8</td><td class="r"><b>-0.38</b></td><td><span class="bdg b-baj">Por debajo</span></td></tr>
+<tr><td><b>Apogeo</b></td><td>Bosa</td><td class="r">2.4</td><td class="r">23.140</td><td class="r">60.6%</td><td class="r rr">-1.0</td><td class="r g">+0.1</td><td class="r"><b>-0.40</b></td><td><span class="bdg b-baj">Por debajo</span></td></tr>
+<tr><td><b>Santa Cecilia</b></td><td>Engativá</td><td class="r">3.0</td><td class="r">22.799</td><td class="r">44.1%</td><td class="r rr">-0.3</td><td class="r rr">-0.7</td><td class="r"><b>-0.40</b></td><td><span class="bdg b-baj">Por debajo</span></td></tr>
+<tr><td><b>Restrepo</b></td><td>Antonio Nariño</td><td class="r">3.0</td><td class="r">49.046</td><td class="r">50.4%</td><td class="r rr">-1.6</td><td class="r g">+0.6</td><td class="r"><b>-0.41</b></td><td><span class="bdg b-baj">Por debajo</span></td></tr>
+<tr><td><b>Marruecos</b></td><td>Rafael Uribe Uribe</td><td class="r">2.0</td><td class="r">33.110</td><td class="r">66.2%</td><td class="r rr">-0.6</td><td class="r rr">-0.4</td><td class="r"><b>-0.43</b></td><td><span class="bdg b-baj">Por debajo</span></td></tr>
+<tr><td><b>Boyaca Real</b></td><td>Engativá</td><td class="r">3.0</td><td class="r">81.193</td><td class="r">49.0%</td><td class="r rr">-0.7</td><td class="r rr">-0.4</td><td class="r"><b>-0.46</b></td><td><span class="bdg b-baj">Por debajo</span></td></tr>
+<tr><td><b>Parque Simon Bolivar can</b></td><td>Teusaquillo</td><td class="r">4.0</td><td class="r">12.812</td><td class="r">49.7%</td><td class="r g">+2.5</td><td class="r rr">-3.5</td><td class="r"><b>-0.48</b></td><td><span class="bdg b-baj">Por debajo</span></td></tr>
+<tr><td><b>Castilla</b></td><td>Kennedy</td><td class="r">2.7</td><td class="r">88.864</td><td class="r">50.4%</td><td class="r g">+0.6</td><td class="r rr">-1.9</td><td class="r"><b>-0.54</b></td><td><span class="bdg b-baj">Por debajo</span></td></tr>
+<tr><td><b>Bavaria</b></td><td>Kennedy</td><td class="r">3.5</td><td class="r">66.208</td><td class="r">49.6%</td><td class="r g">+0.6</td><td class="r rr">-1.9</td><td class="r"><b>-0.54</b></td><td><span class="bdg b-baj">Por debajo</span></td></tr>
+<tr><td><b>Muzu</b></td><td>Antonio Nariño</td><td class="r">3.0</td><td class="r">33.774</td><td class="r">49.9%</td><td class="r rr">-1.3</td><td class="r rr">-0.1</td><td class="r"><b>-0.56</b></td><td><span class="bdg b-baj">Por debajo</span></td></tr>
+<tr><td><b>San Jose</b></td><td>Rafael Uribe Uribe</td><td class="r">3.0</td><td class="r">24.161</td><td class="r">57.3%</td><td class="r rr">-0.1</td><td class="r rr">-1.3</td><td class="r"><b>-0.57</b></td><td><span class="bdg b-baj">Por debajo</span></td></tr>
+<tr><td><b>Venecia</b></td><td>Tunjuelito</td><td class="r">2.6</td><td class="r">69.972</td><td class="r">59.0%</td><td class="r rr">-1.3</td><td class="r rr">-0.4</td><td class="r"><b>-0.62</b></td><td><span class="bdg b-baj">Por debajo</span></td></tr>
+<tr><td><b>Garces Navas</b></td><td>Engativá</td><td class="r">2.9</td><td class="r">72.060</td><td class="r">51.6%</td><td class="r rr">-1.1</td><td class="r rr">-0.7</td><td class="r"><b>-0.64</b></td><td><span class="bdg b-baj">Por debajo</span></td></tr>
+<tr><td><b>Modelia</b></td><td>Fontibon</td><td class="r">4.0</td><td class="r">22.562</td><td class="r">34.2%</td><td class="r rr">-1.4</td><td class="r rr">-0.3</td><td class="r"><b>-0.64</b></td><td><span class="bdg b-baj">Por debajo</span></td></tr>
+<tr><td><b>Kennedy Central</b></td><td>Kennedy</td><td class="r">3.0</td><td class="r">115.749</td><td class="r">55.1%</td><td class="r rr">-1.1</td><td class="r rr">-0.8</td><td class="r"><b>-0.67</b></td><td><span class="bdg b-baj">Por debajo</span></td></tr>
+<tr><td><b>Casa Blanca Suba</b></td><td>Suba</td><td class="r">4.3</td><td class="r">58.700</td><td class="r">25.7%</td><td class="r rr">-1.3</td><td class="r rr">-0.7</td><td class="r"><b>-0.72</b></td><td><span class="bdg b-baj">Por debajo</span></td></tr>
+<tr><td><b>Britalia</b></td><td>Suba</td><td class="r">3.8</td><td class="r">25.556</td><td class="r">34.4%</td><td class="r rr">-1.3</td><td class="r rr">-0.7</td><td class="r"><b>-0.74</b></td><td><span class="bdg b-baj">Por debajo</span></td></tr>
+<tr><td><b>Ciudad Montes</b></td><td>Puente Aranda</td><td class="r">3.0</td><td class="r">53.783</td><td class="r">46.1%</td><td class="r rr">-1.7</td><td class="r rr">-0.5</td><td class="r"><b>-0.75</b></td><td><span class="bdg b-baj">Por debajo</span></td></tr>
+<tr><td><b>Quinta Paredes</b></td><td>Teusaquillo</td><td class="r">3.8</td><td class="r">12.044</td><td class="r">45.5%</td><td class="r">0.0</td><td class="r rr">-2.2</td><td class="r"><b>-0.80</b></td><td><span class="bdg b-baj">Por debajo</span></td></tr>
+<tr><td><b>Ciudad Jardin</b></td><td>Antonio Nariño</td><td class="r">2.7</td><td class="r">16.173</td><td class="r">52.0%</td><td class="r rr">-2.0</td><td class="r rr">-0.4</td><td class="r"><b>-0.85</b></td><td><span class="bdg b-rez">Rezagado</span></td></tr>
+<tr><td><b>Zona Franca</b></td><td>Fontibon</td><td class="r">2.0</td><td class="r">23.466</td><td class="r">59.4%</td><td class="r rr">-1.1</td><td class="r rr">-1.9</td><td class="r"><b>-1.03</b></td><td><span class="bdg b-rez">Rezagado</span></td></tr>
+<tr><td><b>Carvajal</b></td><td>Kennedy</td><td class="r">2.8</td><td class="r">83.956</td><td class="r">53.2%</td><td class="r rr">-2.0</td><td class="r rr">-1.6</td><td class="r"><b>-1.20</b></td><td><span class="bdg b-rez">Rezagado</span></td></tr>
+<tr><td><b>Bolivia</b></td><td>Engativá</td><td class="r">3.0</td><td class="r">54.403</td><td class="r">46.6%</td><td class="r rr">-2.0</td><td class="r rr">-1.8</td><td class="r"><b>-1.25</b></td><td><span class="bdg b-rez">Rezagado</span></td></tr>
+<tr><td><b>Timiza</b></td><td>Kennedy</td><td class="r">2.6</td><td class="r">111.248</td><td class="r">56.5%</td><td class="r rr">-2.7</td><td class="r rr">-1.9</td><td class="r"><b>-1.46</b></td><td><span class="bdg b-rez">Rezagado</span></td></tr>
+<tr><td><b>Patio Bonito</b></td><td>Kennedy</td><td class="r">2.0</td><td class="r">125.821</td><td class="r">59.2%</td><td class="r rr">-3.5</td><td class="r rr">-1.3</td><td class="r"><b>-1.52</b></td><td><span class="bdg b-rez">Rezagado</span></td></tr>
+<tr><td><b>Granjas De Techo</b></td><td>Fontibon</td><td class="r">4.0</td><td class="r">41.032</td><td class="r">37.9%</td><td class="r rr">-3.0</td><td class="r rr">-2.2</td><td class="r"><b>-1.64</b></td><td><span class="bdg b-rez">Rezagado</span></td></tr>
+<tr><td><b>Pardo Rubio</b></td><td>Chapinero</td><td class="r">3.6</td><td class="r">12.701</td><td class="r">49.8%</td><td class="r rr">-3.3</td><td class="r rr">-3.0</td><td class="r"><b>-1.97</b></td><td><span class="bdg b-rez">Rezagado</span></td></tr>
+<tr><td><b>Tintal Norte</b></td><td>Kennedy</td><td class="r">2.5</td><td class="r">54.715</td><td class="r">52.8%</td><td class="r rr">-6.1</td><td class="r rr">-3.8</td><td class="r"><b>-3.00</b></td><td><span class="bdg b-rez">Rezagado</span></td></tr>
+</table>
+
+<div class="shead"><div class="l"><span class="sq"></span>DESEMPEÑO DE CAMPAÑA <b>· MEDIDO DENTRO DE BOGOTÁ</b></div></div>
+
+<h2>7. El porqué: qué descuenta cada residuo</h2>
+<div class="grid2" style="grid-template-columns:1fr 1fr">
+<div>
+<p>El marco de la sección 1 explica por qué uso residuos. La estructura (estrato + base 2022) explica el <b>nivel</b> del voto casi por completo (R²=0,986) y <b>tres cuartas partes de la movilización</b> (R²=0,75), y deja el <b>swing casi sin patrón</b> (R²=0,02). Por eso la retención neta de cada zona es, sobre todo, cuánto se separó del promedio de la ciudad, y la movilización neta sí descuenta el efecto del estrato.</p>
+<p>Los residuos son pequeños: la mayoría de las zonas se mueve dentro de <b>±2 puntos</b> de lo predicho. Los casos que de verdad se salen del patrón son pocos —<b>Galerías y Las Nieves</b> por arriba, <b>Tintal Norte</b> y el norte de Kennedy por abajo—, y son los que merecen mirada de terreno.</p>
+</div><div>
+<img class="chart" src="img/nac_porque.png" alt="movilización ~ estrato">
+</div></div>
+
+<div class="shead"><div class="l"><span class="sq"></span>DESEMPEÑO DE CAMPAÑA <b>· MEDIDO DENTRO DE BOGOTÁ</b></div></div>
+
+<h2>8. Lectura por estrato: dónde está la fuerza y dónde la frontera</h2>
+<p>El estrato fija el nivel del voto (sección 1), así que vale la pena leer la ciudad por estrato para saber dónde apoyarse y dónde crecer. La caída fue pareja en puntos (entre −5 y −8), y la movilización sigue de cerca al estrato: el sur popular saca gente y la parte alta creció poco.</p>
+<img class="chart" src="img/bog_estrato.png" alt="lectura por estrato">
+<table>
+  <tr><th>Estrato</th><th class="r">% Cepeda 2v</th><th class="r">Caída vs 2022</th><th class="r">Movilización</th><th class="r">Votos 2v</th><th class="r">% ciudad</th><th>Lectura</th></tr>
+  <tr><td><b>1 — bajo</b></td><td class="r">73,0%</td><td class="r rr">−5,5</td><td class="r g">+9,5%</td><td class="r">200.461</td><td class="r">5,2%</td><td>Bastión: la mayor movilización de la ciudad</td></tr>
+  <tr><td><b>2 — bajo</b></td><td class="r">65,3%</td><td class="r rr">−6,6</td><td class="r g">+6,1%</td><td class="r">1.368.399</td><td class="r">35,7%</td><td>Base amplia: el bloque afín más grande</td></tr>
+  <tr><td><b>3 — medio</b></td><td class="r">51,7%</td><td class="r rr">−7,0</td><td class="r g">+3,5%</td><td class="r">1.541.277</td><td class="r">40,2%</td><td>La frontera: el mayor electorado, voto dividido</td></tr>
+  <tr><td><b>4 — medio-alto</b></td><td class="r">36,6%</td><td class="r rr">−7,8</td><td class="r">0,0%</td><td class="r">440.711</td><td class="r">11,5%</td><td>La frontera: aquí está la mayor caída</td></tr>
+  <tr><td><b>5 — alto</b></td><td class="r">25,0%</td><td class="r rr">−6,1</td><td class="r rr">−0,2%</td><td class="r">191.703</td><td class="r">5,0%</td><td>Adverso y pequeño</td></tr>
+  <tr><td><b>6 — alto</b></td><td class="r">16,8%</td><td class="r rr">−3,9</td><td class="r rr">−0,6%</td><td class="r">93.005</td><td class="r">2,4%</td><td>Adverso y pequeño</td></tr>
+</table>
+<div class="win"><b>Tres zonas claras.</b> La <b>fuerza</b> vive en los estratos 1 y 2 (41% de los votos): Cepeda saca 65–73% y la movilización es el músculo (+6 a +9,5%). La <b>frontera</b> es la clase media, estratos 3 y 4 (52% de los votos): el estrato 3 es el mayor electorado de la ciudad con el voto más dividido, y el estrato 4 concentra la mayor caída (−7,8). Los estratos 5 y 6 (7%) son adversos y pequeños.</div>
+
+<h2>9. Qué hacer: en el frente y de cara a las locales</h2>
+<p>La lectura por estrato y la de zonas (secciones 4 y 6) apuntan a un mismo mapa de acción, con dos horizontes: el trabajo inmediato y la preparación de las elecciones locales de 2027 (alcaldía, concejo y ediles).</p>
+<div class="win"><b>En el frente, ahora.</b>
+<ul>
+  <li><b>Sostener y ampliar la base del sur (estratos 1–2).</b> Usme, Ciudad Bolívar, Bosa y San Cristóbal son el motor de movilización. Estas comunidades dan el ejemplo de organización y convicción; la tarea es acompañar y extender la estructura territorial que ya construyeron.</li>
+  <li><b>Trabajar la clase media (estratos 3–4).</b> Reúne el 52% del electorado y concentra la mayor caída. Aquí está la tarea central: un mensaje propio sobre seguridad, costo de vida y empleo, dirigido a las preocupaciones de la clase media.</li>
+  <li><b>Atender Kennedy.</b> Su norte —Tintal Norte, Patio Bonito, Timiza— rindió por debajo de lo que su estrato y su base predecían. Conviene un diagnóstico fino, mesa a mesa, para entender qué pasó.</li>
+</ul></div>
+<div class="note"><b>De cara a las locales de 2027.</b>
+<ul>
+  <li><b>La clase media define las locales.</b> El estrato 3 concentra el 40% de los votos de la ciudad: construir candidaturas y estructura propia en las localidades de clase media (Engativá, Suba, Fontibón, Kennedy) es la apuesta de crecimiento.</li>
+  <li><b>Convertir la fuerza presidencial del sur en representación local.</b> En los estratos 1–2 la base de movilización se traduce en votos al concejo y a las JAL; ahí hay terreno fértil para listas locales fuertes.</li>
+  <li><b>Capitalizar la retención del centro urbano.</b> Santa Fe, Las Nieves y Galerías retuvieron el voto por encima de lo esperado: señalan un electorado de centro receptivo a listas locales con perfil propio.</li>
+</ul></div>
+
+<div class="shead"><div class="l"><span class="sq"></span>DESEMPEÑO DE CAMPAÑA <b>· MEDIDO DENTRO DE BOGOTÁ</b></div></div>
+
+<h2>10. Conclusión</h2>
+<div class="note"><b>Dónde rindió Bogotá por encima de lo esperado.</b> Medido con la vara de la ciudad, el desempeño que se separó del patrón vive en dos lugares: la <b>retención del centro tradicional</b> (Santa Fe, Las Nieves y Galerías retuvieron el voto por encima de lo predicho) y la <b>movilización del sur popular</b> (Ciudad Usme, El Tesoro, Lucero y Río Tunjuelo movilizaron por encima de su estructura). <b>Kennedy</b> —su norte: Tintal Norte, Patio Bonito, Timiza— es el frente de atención: rindió por debajo de lo que su estrato y su base predecían. La caída general de −7,1 es de ciudad: la estructura la reparte pareja, así que recuperar respaldo es tarea de toda Bogotá. La referencia nacional confirma el contexto —la ciudad cayó 5 puntos más que el país—, y la lectura de zonas se sostiene en la vara propia de Bogotá. La lectura por estrato cierra el mapa de acción: la fuerza está en el sur (estratos 1–2) y la frontera por reconquistar es la clase media (estratos 3–4), donde se definirán también las locales de 2027.</p>
+<p class="src">Método: por UPZ (90 con ≥4 puestos; 905 puestos casados 2022/2026) y agregado a 19 localidades. Desempeño = residuos del modelo ponderado por votos: swing ~ estrato + base 2022 (retención neta) y movilización ~ estrato + base 2022 (movilización neta), ajustados dentro de Bogotá. Índice compuesto = z(retención neta) + z(movilización neta); cinco niveles por tramos del índice. Se excluyen los puestos no residenciales (puesto censo de Corferias y cárceles, zonas ≥90; 5 puestos, 1,3% de votos). Referencia nacional (contexto): país swing −2,0 / mov +9,9%; Bogotá −7,1 / +4,0%. Listados completos: <i>Desempeno_UPZ_Bogota.csv</i> (90 UPZ), <i>Desempeno_Localidades_Bogota.csv</i> (19 localidades), <i>Lectura_Estratos_Bogota.csv</i> (estratos 1–6). Datos: Registraduría (preconteo, detalle por mesa, MMV 2022); estrato del puesto por catastro. Daniel Santiago Roldán (@RoldnSantiago).</p>
+
+</body>
+</html>
